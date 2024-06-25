@@ -2,7 +2,6 @@
   "name": "namaste-react",
   "description": "this is namaste react by harsh poddar",
   "version": "1.0.0",
-  "main": "app.js",
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.5",
     "ansi-styles": "^4.3.0",
@@ -112,6 +111,10 @@
   },
   "homepage": "https://github.com/harshpoddar0405/namaste-react#readme",
   "devDependencies": {
-    "parcel": "^2.12.0"
-  }
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "browserList": [
+    "last 2 versions"
+  ]
 }

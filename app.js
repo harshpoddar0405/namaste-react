@@ -20,11 +20,13 @@ ReactElement(Object) => HTML(Browser)
 //   " hello world form react"
 // );
 
+import React from "react";
+import ReactDOM from "react-dom";  
 
 const parent = React.createElement("div", { id: "parent" }, [
   // First child div
   React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "I'm an h1 tag"),
+    React.createElement("h1", {}, "I'm an harsh tag"),
     React.createElement("h2", {}, "I'm an h2 tag")
   ]),
   // Second child div
