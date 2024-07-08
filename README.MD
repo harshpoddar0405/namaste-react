@@ -19,3 +19,32 @@
 - Tree Shaking - remove unused code
 - Different dev and production bundles
 
+#App_Structure
+
+// Header
+// -Logo 
+// -NavItems 
+
+// Body
+// -Search
+// -RestaurantContainer
+// -RestaurantCard
+//     -img
+//     -Name of Restaurant,star rating, cuisine, delivery time
+       
+// -Footer
+// -CopyRight
+// -Links
+// -Address
+// -Contact
+
+Two types of Export/Import
+
+- Default export/import;
+
+export default Component;
+import Component from "path";
+
+- Named Export/Import
+export constant Component;
+import {Component} from "path";
