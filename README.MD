@@ -19,7 +19,7 @@
 - Tree Shaking - remove unused code
 - Different dev and production bundles
 
-#App_Structure
+# App_Structure
 
 // Header
 // -Logo 
@@ -48,3 +48,8 @@ import Component from "path";
 - Named Export/Import
 export constant Component;
 import {Component} from "path";
+
+# React Hooks
+ (Normal JS utility functions)
+- useState() - Superpowerful State Variables in React
+- useEffect()

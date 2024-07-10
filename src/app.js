@@ -6,16 +6,11 @@ import Body from "./components/Body";
 
 
 
-const AppLayout = () => {
-
+const AppLayout = () => { 
   return (
     <div className="app">
-
       <Header/>
       <Body/>
-
-      
-
     </div>
   );
 
