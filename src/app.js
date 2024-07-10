@@ -13,7 +13,6 @@ const AppLayout = () => {
       <Body/>
     </div>
   );
-
 };
 
 
