@@ -55,11 +55,18 @@ import {Component} from "path";
 - useEffect()
 
 
-
+# Episode 7 learning
 
 # 2 types of routing  in web apps
 - Client Side Routing - it is in single page application when we tap on something it just loads the component, the code of each component is already there 
-- Server Side Routing
+- Server Side Routing - in this type data is fetched from the server side and whole page is rendered once again
 
+ 
 
-
+ - Link is a special type of anchor tag because react router dom keeps a track of the link 
+ - used createBrowserRouter for routing 
+ - how use state is used, what happens when we use it with or without the dependency array
+ - we cannot call useState inside if else, loops,  functions
+ - how to create routing configuration and add error element used useRouteError() hook to catch the error
+ - creaetd children routes
+ - dynamic route restaurants/:resid 

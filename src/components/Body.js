@@ -1,6 +1,7 @@
 import RestaurantCard  from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 //not using keys in map is not acceptable <<< index  as key<<<<< using unique value as a key is best practice
 
 //if we will not give key then what happens is when we add an element at place the react will not know that which 
@@ -87,9 +88,13 @@ const Body =() =>{
         </div>
         <div className="res-container">
          
-          {
-            filteredRestaurant.map((restaurant) =>(
-            <RestaurantCard key={restaurant.info.id} resData ={restaurant} />
+          {filteredRestaurant.map((restaurant) =>(
+            <Link 
+            key={restaurant.info.id} 
+            to = {"/restaurants/" + restaurant.info.id}
+            >
+            <RestaurantCard resData ={restaurant} />
+            </Link>
           ))}
   
            
