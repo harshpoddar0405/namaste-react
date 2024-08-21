@@ -1,107 +1,91 @@
-import RestaurantCard  from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-//not using keys in map is not acceptable <<< index  as key<<<<< using unique value as a key is best practice
+import useOnlineStatus from "../utils/useOnlineStatus";
 
-//if we will not give key then what happens is when we add an element at place the react will not know that which 
-//element is unique and it has to re render all the elements and it gives a performance hit
+// not using keys in map is not acceptable <<< index as key <<<< using unique value as a key is best practice
+// if we will not give key then what happens is when we add an element at place the react will not know which 
+// element is unique and it has to re-render all the elements and it gives a performance hit
 
-const Body =() =>{
+const Body = () => {
 
   // Local State Variable - Super powerful variable
+  // whenever a state variable changes React will rerender my component
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
-  //whenever a state variable changes React will rerender my  component
-  const [listOfRestaurants, setlistofRestaurants] = useState([]);
-
-  const [filteredRestaurant, setfilteredRestaurant] = useState([]);
-
-  const [searchText, setSecarchText ] = useState("");
-
-  //whenevr the state variable changes React triggers a reconciliation cycle(re-renders   the component)
+  // whenever the state variable changes React triggers a reconciliation cycle (re-renders the component)
   console.log("Body rendered");
-  
-  useEffect(()=>{
-    fetchdata();
-  },[]);
 
-  
-  const fetchdata = async () =>{
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.51800&lng=88.38320&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
-    const json= await data.json(); 
-    console.log(json);  
+    const json = await data.json();
+    console.log(json);
 
-    setlistofRestaurants(
-      //Optional chaining
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setfilteredRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-
+    const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    
+    setListOfRestaurants(restaurants);
+    setFilteredRestaurant(restaurants);
   };
 
-  //Conditional Rendering
-    return listOfRestaurants.length === 0?<Shimmer/>: (
-      <div className="body">
-        <div className="filter">
-          <div className="search">
-            <input 
-              type="text" 
-              className="search-box" 
-              value = {searchText}  
-              onChange={(e) => {
-                setSecarchText(e.target.value); 
-              }}
-            />
-            <button onClick={()=>{
-              //Filter the restaurants and update the UI
-              //searchText
-              console.log(searchText);
+  const onlineStatus = useOnlineStatus();
 
-              const filteredRestaurant = listOfRestaurants.filter(
+  if(onlineStatus === false) return <h1>Looks like you're offline!! Please check your internet connection</h1>
 
-                (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
-              );
+  const handleSearch = () => {
+    const filtered = listOfRestaurants.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredRestaurant(filtered);
+  };
 
-              setfilteredRestaurant(filteredRestaurant);
+  const handleFilterTopRated = () => {
+    const filteredList = listOfRestaurants.filter(
+      (res) => res.info.avgRating > 4
+    );
+    setFilteredRestaurant(filteredList);
+  };
 
-            }}
-          >
-            Search
-          </button>
-          </div>
-          <button className="filter-btn"
-          onClick={()=>{
-            //Filter Logic
-            const filteredList  = listOfRestaurants.filter(
-              (res)=> res.info.avgRating >4
-            );
-            setlistofRestaurants(filteredList);
-            }}
-          >
-            Top Rated Restaurant
-          </button>
+
+
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
+  }
+
+  return (
+    <div className="body">
+      <div className="filter">
+        <div className="search">
+          <input 
+            type="text" 
+            className="search-box" 
+            value={searchText}  
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
-        <div className="res-container">
-         
-          {filteredRestaurant.map((restaurant) =>(
-            <Link 
-            key={restaurant.info.id} 
-            to = {"/restaurants/" + restaurant.info.id}
-            >
-            <RestaurantCard resData ={restaurant} />
-            </Link>
-          ))}
-  
-           
-  
-        </div>
-      
+        <button className="filter-btn" onClick={handleFilterTopRated}>
+          Top Rated Restaurant
+        </button>
       </div>
-    );
-  };
+      <div className="res-container">
+        {filteredRestaurant.map((restaurant) => (
+          <Link key={restaurant.info.id} to={`/restaurants/${restaurant.info.id}`}>
+            <RestaurantCard resData={restaurant} />
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default Body;

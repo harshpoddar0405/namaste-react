@@ -28,7 +28,8 @@
 .res-card{
     margin: 5px;
     padding: 5px;
-    width: 200px;
+    width: 300px;
+    height: 420px;
 }
 
 .res-card:hover{
@@ -43,11 +44,13 @@
 .res-logo{
     width: 200px;
     height: 200px;
+    align-self: center;
 
 }
 .res-container{
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .filter-btn{
@@ -74,4 +77,87 @@
 
 .filter{
     display: flex;
+}
+
+.user-card-items{
+    padding: 10px;
+    background-color: #f5f5f5; /* Light gray background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: center; /* Center-align text */
+}
+.user-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Gap between the cards */
+    margin: 20px; /* Optional: Adds some margin around the entire container */
+}
+
+
+.user-card-items img {
+    border-radius: 50%; /* Make the avatar image circular */
+    width: 200px; /* Fixed size for the avatar */
+    height: 200px;
+    object-fit: cover; /* Ensure the image covers the area */
+    margin-bottom: 15px; /* Space between the image and text */
+}
+
+.user-card-items h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.user-card-items h2, .user-card h3, .user-card h4 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.user-card-items h4 {
+    color: #555; /* Slightly lighter text for the email */
+}
+
+.about-us {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-us h1 {
+    text-align: center;
+    color: #e63946;
+    margin-bottom: 20px;
+}
+
+.about-us p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    line-height: 1.8;
+    color: #555;
+}
+
+.about-us ul {
+    margin: 20px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.about-us ul li {
+    background-color: #f1faee;
+    margin: 10px 0;
+    padding: 15px;
+    border-left: 5px solid #e63946;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+.about-us ul li strong {
+    color: #1d3557;
 }
