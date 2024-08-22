@@ -50,7 +50,7 @@ const Body = () => {
 
   const handleFilterTopRated = () => {
     const filteredList = listOfRestaurants.filter(
-      (res) => res.info.avgRating > 4
+      (res) => res.info.avgRating >= 4.5
     );
     setFilteredRestaurant(filteredList);
   };
@@ -71,7 +71,7 @@ const Body = () => {
             value={searchText}  
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button className="search-button" onClick={handleSearch}>Search</button>
         </div>
         <button className="filter-btn" onClick={handleFilterTopRated}>
           Top Rated Restaurant
