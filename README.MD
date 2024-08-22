@@ -57,7 +57,8 @@ import {Component} from "path";
 
 # Episode 7 learning
 
-# 2 types of routing  in web apps
+- 2 types of routing  in web apps
+
 - Client Side Routing - it is in single page application when we tap on something it just loads the component, the code of each component is already there 
 - Server Side Routing - in this type data is fetched from the server side and whole page is rendered once again
 
@@ -81,7 +82,7 @@ import {Component} from "path";
 
 
  
-
+# Other points to remember
  - Link is a special type of anchor tag because react router dom keeps a track of the link 
  - used createBrowserRouter for routing 
  - how use state is used, what happens when we use it with or without the dependency array
