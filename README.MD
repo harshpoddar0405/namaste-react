@@ -77,7 +77,14 @@ import {Component} from "path";
 - How to make custom hooks and use them to follow the single respinsibility principle
 - Learnt about lazy loading and what happens when we uses it and how it is benificial for large scale applications with huge components
 
+# Episode 10 Learning - Jo Dikhta hai wo bikta hai - Tailwind Css
 
+- we learnt about how to write taiwind css
+- we can use tailwind css intellisense extension in vscode that make writing tailwind css easy
+- tailwind css has thousands on class which gives different styling
+- when we use normal css whole styling file is uploaded to browser which makes our app heavy
+- but when we use talwind css only the class which we have used is laaded to browser as well as when we use a class multiple times it is uploaded only once in the browser which makes our app light
+- className-[]  by using this syntax we can give custom parameters to the class e.g w-[200px] 
 
 
 
