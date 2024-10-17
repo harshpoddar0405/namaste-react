@@ -28,4 +28,25 @@ const RestaurantCard = (props) => {
   );
 };
 
+
+
+// Higher Order Components
+
+// input- RestaurantCard => RestauranrtCardNearAndFast 
+
+export const withNearAndFastLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <label className="absolute top-2 left-2 bg-teal-700  text-white text-sm font-semibold py-1 px-3 rounded-full shadow-lg">
+          Near & Fast
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
+
+
 export default RestaurantCard;

@@ -1,4 +1,16 @@
-import RestaurantCard from "./RestaurantCard";
+
+
+
+
+
+
+
+
+
+
+
+
+import RestaurantCard, {withNearAndFastLabel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -8,6 +20,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  
+  const RestaurantCardNearAndFast = withNearAndFastLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -44,6 +58,7 @@ const Body = () => {
     setFilteredRestaurant(filteredList);
   };
 
+  console.log(listOfRestaurants);
   if (listOfRestaurants.length === 0) {
     return <Shimmer />;
   }
@@ -76,7 +91,13 @@ const Body = () => {
       <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredRestaurant.map((restaurant) => (
           <Link key={restaurant.info.id} to={`/restaurants/${restaurant.info.id}`}>
-            <RestaurantCard resData={restaurant} />
+
+            {(restaurant.info.sla.deliveryTime <= 30 && restaurant.info.sla.lastMileTravel<=5 ) ? (
+              <RestaurantCardNearAndFast resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )
+            }
           </Link>
         ))}
       </div>
